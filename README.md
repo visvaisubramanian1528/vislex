@@ -7,10 +7,11 @@ Try it live: [vislex-ai.vercel.app](https://vislex-ai.vercel.app/)
 Research prototype, not legal advice--verify anything important before using it on a real deal.
 
 What it does
-Deal Risk Screener — describe a cross-border deal, get a memo on CFIUS exposure, sanctions risk, and tariff exposure
-Document Analyzer — upload a contract, get back flagged trade risks and missing provisions
-Live Federal Search — pulls current info from OFAC, CFIUS, USTR Section 301, Commerce AD/CVD, and BIS
-Cicero 🏛️ — the built-in AI assistant, styled as a Roman statesman who's seen it all ("Salve! I survived exile and recall by the Roman Senate — OFAC sanctions compliance? Child's play."). Beyond the personality, Cicero actually does the work: answers follow-up questions, takes document uploads, cites its sources, and can turn any answer into a saved memo.
+Deal Risk Screener: describe a cross-border deal, get a memo on CFIUS exposure, sanctions risk, and tariff exposure
+Document Analyzer: upload a contract, get back flagged trade risks and missing provisions
+Live Federal Search: pulls current info from OFAC, CFIUS, USTR Section 301, Commerce AD/CVD, and BIS
+Cicero: the built-in AI assistant, styled as a Roman statesman who's seen it all ("Salve! I survived exile and recall by the Roman Senate — OFAC sanctions compliance? Child's play."). Beyond the personality, Cicero actually does the work: answers follow-up questions, takes document uploads, cites its sources, and can turn any answer into a saved memo. Users can also highlight any text and Cicero can, "Explain," "Simplify," or "Define Term."
+
 How it's built
 
 Plain HTML/CSS/JS frontend, no framework. A serverless function (api/claude.js) sits between the browser and the Claude API so the API key never touches the client — deployed on Vercel.
