@@ -2,7 +2,7 @@ Vislex
 
 An AI-powered legal tech tool for international trade and transactional law, built on Anthropic's Claude API.
 
-Try it live: vislex-ai.vercel.app
+Try it live: [vislex-ai.vercel.app](https://vislex-ai.vercel.app/)
 
 Research prototype, not legal advice--verify anything important before using it on a real deal.
 
