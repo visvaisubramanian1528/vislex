@@ -1522,7 +1522,7 @@
           <div class="how-feature-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a6dbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div><strong>Cicero AI Assistant</strong><span>Click the Roman bust icon at bottom-right to ask questions about any analysis</span></div></div>
           <div class="how-feature-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a6dbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg><div><strong>Text Selection Toolbar</strong><span>Highlight any output text to Explain, Simplify, or Define Term instantly</span></div></div>
           <div class="how-feature-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a6dbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><strong>Export &amp; Copy</strong><span>Download any analysis as a formatted PDF or copy to clipboard</span></div></div>
-          <div class="how-feature-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a6dbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg><div><strong>Verified Source Links</strong><span>Every output cites official government sources — OFAC, CFIUS, BIS, USTR</span></div></div>
+          <div class="how-feature-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a6dbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg><div><strong>Related Official Resources</strong><span>Each output links to relevant official regulatory portals for further verification — OFAC, CFIUS, BIS, USTR</span></div></div>
           <div class="how-feature-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a6dbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><div><strong>Attorney-Focused Output</strong><span>Results formatted as legal memos with risk ratings, R&amp;W flags, due diligence checklists</span></div></div>
           <div class="how-feature-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a6dbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div><strong>Live Status Display</strong><span>See exactly which federal databases are being queried in real time</span></div></div>
           <div class="how-feature-chip" style="border-color:#2a4a8a;background:linear-gradient(135deg,#0d1929,#111f36)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a6dbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"></line><circle cx="9" cy="12" r="2" fill="#4a6dbf"></circle></svg><div><strong>CFIUS Ownership Slider</strong><span>Drag to instantly see how changing foreign ownership % flips mandatory CFIUS filing requirements, with live legal citations</span></div></div>
@@ -2351,7 +2351,7 @@
       // 7. SOURCES
       const citKeys = getCitationKeys(rawText);
       if (citKeys.length) {
-        html += '<div class="fr-section"><div class="fr-section-title">' + (t.frSourcesReviewed||'Sources Reviewed') + '</div><div class="fr-sources-list">';
+        html += '<div class="fr-section"><div class="fr-section-title">' + (t.frSourcesReviewed||'Related Official Resources') + '</div><div class="fr-sources-list">';
         citKeys.slice(0,6).forEach((k, i) => {
           const s = SOURCES[k]; if (!s) return;
           html += '<a href="' + s.url + '" target="_blank" rel="noopener noreferrer" class="fr-source-card">' +
@@ -3342,8 +3342,8 @@
           chipSelectionDesc:'Highlight any output text to Explain, Simplify, or Define Term instantly',
           chipExport:'Export & Copy',
           chipExportDesc:'Download any analysis as a formatted PDF or copy to clipboard',
-          chipSources:'Verified Source Links',
-          chipSourcesDesc:'Every output cites official government sources — OFAC, CFIUS, BIS, USTR',
+          chipSources:'Related Official Resources',
+          chipSourcesDesc:'Each output links to relevant official regulatory portals for further verification — OFAC, CFIUS, BIS, USTR',
           chipAttorney:'Attorney-Focused Output',
           chipAttorneyDesc:'Results formatted as legal memos with risk ratings, R&W flags, due diligence checklists',
           chipLive:'Live Status Display',
@@ -3380,7 +3380,7 @@
           frLegalCompliance:'Legal and Compliance Relevance',
           frNextSteps:'Recommended Next Steps',
           frDefaultSteps:['Verify the entity name and search aliases and subsidiaries.','Cross-reference against OFAC SDN list and BIS Entity List.','Review any recent enforcement actions or administrative proceedings.','Check for related entities, parent companies, and joint ventures.','Escalate to legal or compliance counsel before proceeding with any transaction.'],
-          frSourcesReviewed:'Sources Reviewed',
+          frSourcesReviewed:'Related Official Resources',
           frDisclaimer:'Research prototype — not legal advice. Verify all findings independently with qualified counsel.',
           daKeyClauses:'Key Clauses Found',
           daPillMedium:'Medium', daPillHighRisk:'High Risk', daPillLowRisk:'Low Risk', daPillReview:'Review',
@@ -3513,8 +3513,8 @@
           chipSelectionDesc:'Resalte cualquier texto para Explicar, Simplificar o Definir un Término al instante',
           chipExport:'Exportar y Copiar',
           chipExportDesc:'Descargue cualquier análisis como PDF o cópielo al portapapeles',
-          chipSources:'Enlaces de Fuentes Verificadas',
-          chipSourcesDesc:'Cada resultado cita fuentes oficiales del gobierno — OFAC, CFIUS, BIS, USTR',
+          chipSources:'Recursos Oficiales Relacionados',
+          chipSourcesDesc:'Cada resultado enlaza a portales regulatorios oficiales relevantes para su verificación — OFAC, CFIUS, BIS, USTR',
           chipAttorney:'Resultado Orientado al Abogado',
           chipAttorneyDesc:'Resultados formateados como memorandos legales con calificaciones de riesgo',
           chipLive:'Visualización de Estado en Vivo',
@@ -3551,7 +3551,7 @@
           frLegalCompliance:'Relevancia Legal y de Cumplimiento',
           frNextSteps:'Próximos Pasos Recomendados',
           frDefaultSteps:['Verifique el nombre de la entidad y busque alias y subsidiarias.','Compare con la lista SDN de OFAC y la Lista de Entidades de BIS.','Revise cualquier acción de cumplimiento o procedimiento administrativo reciente.','Verifique entidades relacionadas, empresas matrices y empresas conjuntas.','Consulte a un asesor legal o de cumplimiento antes de proceder con cualquier transacción.'],
-          frSourcesReviewed:'Fuentes Revisadas',
+          frSourcesReviewed:'Recursos Oficiales Relacionados',
           frDisclaimer:'Prototipo de investigación, no asesoramiento legal. Verifique todos los hallazgos de forma independiente con un abogado calificado.',
           daKeyClauses:'Cláusulas Clave Encontradas',
           daPillMedium:'Medio', daPillHighRisk:'Riesgo Alto', daPillLowRisk:'Riesgo Bajo', daPillReview:'Revisar',
@@ -3690,8 +3690,8 @@
           chipSelectionDesc:'Sélectionnez du texte pour Expliquer, Simplifier ou Définir un terme instantanément',
           chipExport:'Exporter et Copier',
           chipExportDesc:'Téléchargez toute analyse en PDF ou copiez-la dans le presse-papiers',
-          chipSources:'Liens de Sources Vérifiées',
-          chipSourcesDesc:'Chaque résultat cite des sources gouvernementales officielles — OFAC, CFIUS, BIS, USTR',
+          chipSources:'Ressources Officielles Connexes',
+          chipSourcesDesc:'Chaque résultat renvoie vers des portails réglementaires officiels pertinents à des fins de vérification — OFAC, CFIUS, BIS, USTR',
           chipAttorney:'Résultat Orienté Avocat',
           chipAttorneyDesc:'Résultats formatés en mémos juridiques avec évaluations des risques',
           chipLive:'Affichage du Statut en Direct',
@@ -3728,7 +3728,7 @@
           frLegalCompliance:'Pertinence Juridique et de Conformité',
           frNextSteps:'Prochaines Étapes Recommandées',
           frDefaultSteps:["Vérifiez le nom de l'entité et recherchez les alias et filiales.","Comparez avec la liste SDN de l'OFAC et la liste des entités du BIS.","Examinez toute mesure d'application ou procédure administrative récente.",'Vérifiez les entités liées, les sociétés mères et les coentreprises.',"Consultez un conseiller juridique ou de conformité avant de procéder à toute transaction."],
-          frSourcesReviewed:'Sources Consultées',
+          frSourcesReviewed:'Ressources Officielles Connexes',
           frDisclaimer:"Prototype de recherche, pas un conseil juridique. Vérifiez toutes les conclusions de manière indépendante auprès d'un avocat qualifié.",
           daKeyClauses:'Clauses Clés Identifiées',
           daPillMedium:'Moyen', daPillHighRisk:'Risque Élevé', daPillLowRisk:'Risque Faible', daPillReview:'À Examiner',
@@ -3861,8 +3861,8 @@
           chipSelectionDesc:'Markieren Sie Text um Erklären, Vereinfachen oder Definieren sofort zu nutzen',
           chipExport:'Exportieren und Kopieren',
           chipExportDesc:'Laden Sie jede Analyse als PDF herunter oder kopieren Sie sie',
-          chipSources:'Verifizierte Quellenlinks',
-          chipSourcesDesc:'Jedes Ergebnis zitiert offizielle Regierungsquellen — OFAC, CFIUS, BIS, USTR',
+          chipSources:'Relevante Offizielle Ressourcen',
+          chipSourcesDesc:'Jedes Ergebnis verlinkt zu relevanten offiziellen Regulierungsportalen zur weiteren Überprüfung — OFAC, CFIUS, BIS, USTR',
           chipAttorney:'Anwaltsorientierte Ausgabe',
           chipAttorneyDesc:'Ergebnisse als Rechtsgutachten formatiert mit Risikobewertungen',
           chipLive:'Live-Statusanzeige',
@@ -3899,7 +3899,7 @@
           frLegalCompliance:'Rechtliche und Compliance-Relevanz',
           frNextSteps:'Empfohlene nächste Schritte',
           frDefaultSteps:['Überprüfen Sie den Namen der Einheit sowie Aliasnamen und Tochtergesellschaften.','Gleichen Sie mit der OFAC-SDN-Liste und der BIS-Entity-List ab.','Prüfen Sie aktuelle Durchsetzungsmaßnahmen oder Verwaltungsverfahren.','Überprüfen Sie verbundene Unternehmen, Muttergesellschaften und Joint Ventures.','Ziehen Sie vor jeder Transaktion einen Rechts- oder Compliance-Berater hinzu.'],
-          frSourcesReviewed:'Geprüfte Quellen',
+          frSourcesReviewed:'Relevante Offizielle Ressourcen',
           frDisclaimer:'Forschungsprototyp, keine Rechtsberatung. Überprüfen Sie alle Ergebnisse unabhängig mit einem qualifizierten Anwalt.',
           daKeyClauses:'Gefundene Schlüsselklauseln',
           daPillMedium:'Mittel', daPillHighRisk:'Hohes Risiko', daPillLowRisk:'Geringes Risiko', daPillReview:'Prüfen',
@@ -4031,8 +4031,8 @@
           chipSelectionDesc:'高亮显示任何输出文本以立即解释、简化或定义术语',
           chipExport:'导出和复制',
           chipExportDesc:'将任何分析下载为格式化PDF或复制到剪贴板',
-          chipSources:'已验证来源链接',
-          chipSourcesDesc:'每个输出都引用官方政府来源 — OFAC、CFIUS、BIS、USTR',
+          chipSources:'相关官方资源',
+          chipSourcesDesc:'每个输出都链接到相关的官方监管门户，供进一步核实 — OFAC、CFIUS、BIS、USTR',
           chipAttorney:'面向律师的输出',
           chipAttorneyDesc:'结果格式化为带有风险评级的法律备忘录',
           chipLive:'实时状态显示',
@@ -4069,7 +4069,7 @@
           frLegalCompliance:'法律与合规相关性',
           frNextSteps:'建议的后续步骤',
           frDefaultSteps:['核实实体名称并搜索别名和子公司。','与OFAC制裁名单和BIS实体清单进行交叉核对。','审查任何近期的执法行动或行政程序。','核查相关实体、母公司和合资企业。','在进行任何交易前，请咨询法律或合规顾问。'],
-          frSourcesReviewed:'已审查的来源',
+          frSourcesReviewed:'相关官方资源',
           frDisclaimer:'这是一个研究原型，不构成法律建议。请与合格律师独立核实所有发现。',
           daKeyClauses:'发现的关键条款',
           daPillMedium:'中等', daPillHighRisk:'高风险', daPillLowRisk:'低风险', daPillReview:'待审查',
@@ -4201,8 +4201,8 @@
           chipSelectionDesc:'قم بتمييز أي نص للشرح أو التبسيط أو تعريف المصطلح فوراً',
           chipExport:'تصدير ونسخ',
           chipExportDesc:'قم بتنزيل أي تحليل كـ PDF أو نسخه إلى الحافظة',
-          chipSources:'روابط المصادر الموثقة',
-          chipSourcesDesc:'كل نتيجة تستشهد بمصادر حكومية رسمية — OFAC وCFIUS وBIS وUSTR',
+          chipSources:'موارد رسمية ذات صلة',
+          chipSourcesDesc:'ترتبط كل نتيجة ببوابات تنظيمية رسمية ذات صلة للتحقق الإضافي — OFAC وCFIUS وBIS وUSTR',
           chipAttorney:'مخرجات موجهة للمحامين',
           chipAttorneyDesc:'نتائج مُهيأة كمذكرات قانونية مع تقييمات المخاطر',
           chipLive:'عرض الحالة المباشر',
@@ -4239,7 +4239,7 @@
           frLegalCompliance:'الصلة القانونية والامتثال',
           frNextSteps:'الخطوات التالية الموصى بها',
           frDefaultSteps:['تحقق من اسم الكيان وابحث عن الأسماء المستعارة والشركات التابعة.','قارن مع قائمة عقوبات OFAC SDN وقائمة كيانات BIS.','راجع أي إجراءات إنفاذ أو إجراءات إدارية حديثة.','تحقق من الكيانات ذات الصلة والشركات الأم والمشاريع المشتركة.','استشر مستشاراً قانونياً أو متخصصاً في الامتثال قبل المضي في أي معاملة.'],
-          frSourcesReviewed:'المصادر التي تمت مراجعتها',
+          frSourcesReviewed:'موارد رسمية ذات صلة',
           frDisclaimer:'هذا نموذج بحثي أولي وليس استشارة قانونية. يرجى التحقق من جميع النتائج بشكل مستقل مع محامٍ مؤهل.',
           daKeyClauses:'البنود الرئيسية التي تم العثور عليها',
           daPillMedium:'متوسط', daPillHighRisk:'مخاطر عالية', daPillLowRisk:'مخاطر منخفضة', daPillReview:'مراجعة',
