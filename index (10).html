@@ -2092,16 +2092,16 @@
     function parseDealPlain(raw) {
       const clean=stripMarkdown(raw),data={};
       const rm=clean.match(/RISK\s*RATING[:\s]*(CRITICAL|HIGH|MEDIUM|LOW)/i); data.rating=rm?rm[1].toUpperCase():'HIGH';
-      const sm=clean.match(/DEAL SUMMARY[:\n]+([\s\S]*?)(?=\n\n|\n[A-Z0-9]+\.|\n##)/i); data.dealSummary=sm?sm[1].trim():'';
+      const sm=clean.match(/DEAL SUMMARY[:\n]+([\s\S]*?)(?=\n\n|\n[A-Z0-9]+\.|\n##)/i); data.dealSummary=sm?escapeHtml(sm[1].trim()):'';
       const stm=clean.match(/DEAL STOPPERS[:\n]+([\s\S]*?)(?=\n\n[A-Z0-9]+\.|\nCFIUS)/i);
-      if(stm)data.dealStoppers=stm[1].trim().split('\n').filter(l=>l.trim()).map(l=>l.replace(/^[-•*\d\.]\s*/,'').trim()).filter(Boolean);
-      const cm=clean.match(/CFIUS ANALYSIS[:\n]+([\s\S]*?)(?=\n\n[A-Z0-9]+\.|\nREGULATORY)/i); data.cfius=cm?cm[1].trim().substring(0,700):'';
+      if(stm)data.dealStoppers=stm[1].trim().split('\n').filter(l=>l.trim()).map(l=>escapeHtml(l.replace(/^[-•*\d\.]\s*/,'').trim())).filter(Boolean);
+      const cm=clean.match(/CFIUS ANALYSIS[:\n]+([\s\S]*?)(?=\n\n[A-Z0-9]+\.|\nREGULATORY)/i); data.cfius=cm?escapeHtml(cm[1].trim().substring(0,700)):'';
       data.regulatoryGrid=[];
-      ['OFAC','Section 301','AD/CVD','BIS'].forEach(area=>{const m=clean.match(new RegExp(area+'[\\s\\S]{0,300}?(CRITICAL|HIGH|MEDIUM|LOW)','i'));if(m)data.regulatoryGrid.push({area,risk:m[1],analysis:m[0].substring(0,180).replace(/\n/g,' ')});});
+      ['OFAC','Section 301','AD/CVD','BIS'].forEach(area=>{const m=clean.match(new RegExp(area+'[\\s\\S]{0,300}?(CRITICAL|HIGH|MEDIUM|LOW)','i'));if(m)data.regulatoryGrid.push({area,risk:m[1],analysis:escapeHtml(m[0].substring(0,180).replace(/\n/g,' '))});});
       const dm=clean.match(/DUE DILIGENCE CHECKLIST[:\n]+([\s\S]*?)(?=\n\n[A-Z0-9]+\.|\nREPRESENTATIONS)/i);
-      if(dm)data.dueDiligence=dm[1].trim().split('\n').filter(l=>l.trim()).map(l=>{const p=l.match(/\[(HIGH|MEDIUM|LOW|CRITICAL)\]/i)||l.match(/\b(HIGH|MEDIUM|LOW|CRITICAL)\b/i);return{priority:p?p[1]:'MEDIUM',action:l.replace(/^[-•*\d\.]\s*/,'').replace(/\[(HIGH|MEDIUM|LOW|CRITICAL)\]\s*/gi,'').trim()};});
+      if(dm)data.dueDiligence=dm[1].trim().split('\n').filter(l=>l.trim()).map(l=>{const p=l.match(/\[(HIGH|MEDIUM|LOW|CRITICAL)\]/i)||l.match(/\b(HIGH|MEDIUM|LOW|CRITICAL)\b/i);return{priority:p?p[1]:'MEDIUM',action:escapeHtml(l.replace(/^[-•*\d\.]\s*/,'').replace(/\[(HIGH|MEDIUM|LOW|CRITICAL)\]\s*/gi,'').trim())};});
       const rw=clean.match(/REPRESENTATIONS[^\n]*FLAGS?[:\n]+([\s\S]*?)(?=\nThis is a research|\n\n[A-Z]|$)/i);
-      if(rw)data.rw=rw[1].trim().split('\n').filter(l=>l.trim()).map(l=>l.replace(/^[-•*\d\.]\s*/,'').trim());
+      if(rw)data.rw=rw[1].trim().split('\n').filter(l=>l.trim()).map(l=>escapeHtml(l.replace(/^[-•*\d\.]\s*/,'').trim()));
       return data;
     }
 
@@ -2135,8 +2135,8 @@
       const t = getT();
 
       const db = document.getElementById('federalDb');
-      const dbName = overrideDbName || (db ? db.options[db.selectedIndex].text : (t.frDatabaseFallback || 'Federal Database'));
-      const query = overrideQuery !== undefined ? overrideQuery : (document.getElementById('federalQuery') ? document.getElementById('federalQuery').value.trim() : '');
+      const dbName = escapeHtml(overrideDbName || (db ? db.options[db.selectedIndex].text : (t.frDatabaseFallback || 'Federal Database')));
+      const query = escapeHtml(overrideQuery !== undefined ? overrideQuery : (document.getElementById('federalQuery') ? document.getElementById('federalQuery').value.trim() : ''));
       const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
 
       // Clean the raw text completely — strip ALL markdown symbols
@@ -2273,7 +2273,7 @@
       if (summaryText) {
         html += '<div class="fr-section">' +
           '<div class="fr-section-title">' + (t.frExecSummary||'Executive Summary') + '</div>' +
-          '<p class="fr-summary-text">' + summaryText + '</p>' +
+          '<p class="fr-summary-text">' + escapeHtml(summaryText) + '</p>' +
         '</div>';
       }
 
@@ -2287,7 +2287,7 @@
         findingLines.slice(0, 5).forEach((line, i) => {
           html += '<div class="fr-finding-card">' +
             '<div class="fr-finding-num">' + (i+1) + '</div>' +
-            '<div class="fr-finding-text">' + line + '</div>' +
+            '<div class="fr-finding-text">' + escapeHtml(line) + '</div>' +
           '</div>';
         });
         html += '</div></div>';
@@ -2325,7 +2325,7 @@
       if (compText) {
         html += '<div class="fr-section">' +
           '<div class="fr-section-title">' + (t.frLegalCompliance||'Legal and Compliance Relevance') + '</div>' +
-          '<p class="fr-summary-text">' + compText + '</p>' +
+          '<p class="fr-summary-text">' + escapeHtml(compText) + '</p>' +
         '</div>';
       }
 
@@ -2344,7 +2344,7 @@
       if (steps.length < 2) steps = defaultSteps;
       html += '<div class="fr-section"><div class="fr-section-title">' + (t.frNextSteps||'Recommended Next Steps') + '</div><ul class="fr-steps-list">';
       steps.forEach(step => {
-        if (isMeaningfulLine(step)) html += '<li class="fr-step-item">' + step.trim() + '</li>';
+        if (isMeaningfulLine(step)) html += '<li class="fr-step-item">' + escapeHtml(step.trim()) + '</li>';
       });
       html += '</ul></div>';
 
@@ -2504,7 +2504,7 @@
       if (containerEl.querySelectorAll('.da-section').length <= 1) {
         const lines = stripMarkdown(rawText).split('\n').filter(l => l.trim()).slice(0,8);
         let html = '<div class="da-section"><div class="da-section-title">' + (t.daFallbackAnalysis||'Analysis') + '</div><ul class="da-steps-list">';
-        lines.forEach(l => { html += '<li class="da-step-item">' + l.substring(0,180) + '</li>'; });
+        lines.forEach(l => { html += '<li class="da-step-item">' + escapeHtml(l.substring(0,180)) + '</li>'; });
         html += '</ul></div>';
         containerEl.innerHTML += html;
       }
@@ -2552,28 +2552,28 @@
 
         if (isHeader) {
           flush();
-          current.title = t.replace(/^#+\s+/, '').replace(/:$/, '').trim().toUpperCase();
+          current.title = escapeHtml(t.replace(/^#+\s+/, '').replace(/:$/, '').trim().toUpperCase());
           return;
         }
 
         if (/^---+$/.test(t) || /^===+$/.test(t)) return;
 
         if (/^[•\-\*]\s+/.test(t)) {
-          current.items.push(t.replace(/^[•\-\*]\s+/, '').trim());
+          current.items.push(escapeHtml(t.replace(/^[•\-\*]\s+/, '').trim()));
           return;
         }
         if (/^\d+\.\s+/.test(t)) {
           isNumbered = true;
-          current.items.push(t.replace(/^\d+\.\s+/, '').trim());
+          current.items.push(escapeHtml(t.replace(/^\d+\.\s+/, '').trim()));
           return;
         }
         if (/^\[(HIGH|MEDIUM|LOW|CRITICAL)\]/i.test(t)) {
-          current.items.push(t);
+          current.items.push(escapeHtml(t));
           return;
         }
 
         if (current.title) {
-          current.paragraphs.push(t);
+          current.paragraphs.push(escapeHtml(t));
         }
       });
 
