@@ -1485,6 +1485,7 @@
         <div class="panel-header">
           <h2>Document Analyzer</h2>
           <p>Upload a contract or deal document and Vislex will scan it for trade risk clauses, supply chain exposure, missing provisions, and attorney recommendations.</p>
+          <p style="font-size:13px;color:#7d8bab;margin-top:6px">Uploaded documents are sent to the AI model for this analysis only and are not stored by Vislex afterward. Avoid uploading documents containing information you aren't authorized to share.</p>
         </div>
         <label>Upload Document</label>
         <div class="upload-zone" id="uploadZone" onclick="document.getElementById(&#39;docFile&#39;).click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
@@ -1616,9 +1617,9 @@
           <h2 class="questions-big-title"><span id="questionsTyped"></span><span class="questions-cursor">|</span></h2>
         </div>
         <div class="faq-list">
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What is Vislex?</span><span class="faq-arrow">↓</span></button><div class="faq-a">A cross-border legal risk assistant. It helps screen transactions, search federal trade-risk databases, and review contracts for diligence issues.</div></div>
+          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What is Vislex?</span><span class="faq-arrow">↓</span></button><div class="faq-a">A cross-border legal risk assistant. It helps screen transactions, search federal trade-risk databases, and review contracts for diligence issues. In plain terms: before a cross-border deal closes, Vislex checks it against U.S. sanctions, national-security review, and tariff rules — and flags what a lawyer would want to look at first.</div></div>
           <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>How is it different from a normal AI chatbot?</span><span class="faq-arrow">↓</span></button><div class="faq-a">Vislex is organized around structured legal workflows, such as deal screening, federal database search, and contract review Q&amp;A. The output is formatted as a legal memo, not a conversation.</div></div>
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>Who is it built for?</span><span class="faq-arrow">↓</span></button><div class="faq-a">Attorneys, compliance teams, legal researchers, and students working on trade and transactional risk. The language and output are designed for legal analysis, not general business summaries.</div></div>
+          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>Who is it built for?</span><span class="faq-arrow">↓</span></button><div class="faq-a">Legal researchers, students, and anyone studying trade and transactional risk. The output is structured the way an attorney would organize an analysis, though it hasn't yet been tested by practicing attorneys — treat it as a research and learning aid, not a substitute for legal review.</div></div>
           <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What does the Deal Risk Screener do?</span><span class="faq-arrow">↓</span></button><div class="faq-a">It takes a deal description and returns a structured memo covering CFIUS exposure, sanctions concerns, tariff risk, government contract flags, and due diligence priorities.</div></div>
           <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What is the Live Federal Search for?</span><span class="faq-arrow">↓</span></button><div class="faq-a">Quick regulatory context from OFAC, CFIUS, USTR Section 301, Commerce AD/CVD, and BIS.</div></div>
           <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What can the Document Analyzer review?</span><span class="faq-arrow">↓</span></button><div class="faq-a">Uploaded contracts and agreements. It flags trade-risk clauses, missing protections, sanctions language, supply-chain terms, and gives attorney-focused recommendations as a practical issue list.</div></div>
@@ -3429,11 +3430,11 @@
           ciceroConnectionError:"I'm having trouble connecting right now. Please try again in a moment.",
           ciceroNoteTitle:'Cicero Note',
           faq1q:'What is Vislex?',
-          faq1a:'A cross-border legal risk assistant. It helps screen transactions, search federal trade-risk databases, and review contracts for diligence issues.',
+          faq1a:'A cross-border legal risk assistant. It helps screen transactions, search federal trade-risk databases, and review contracts for diligence issues. In plain terms: before a cross-border deal closes, Vislex checks it against U.S. sanctions, national-security review, and tariff rules — and flags what a lawyer would want to look at first.',
           faq2q:'How is it different from a normal AI chatbot?',
           faq2a:'Vislex is organized around structured legal workflows such as deal screening, federal database search, and contract review. The output is formatted as a legal memo, not a conversation.',
           faq3q:'Who is it built for?',
-          faq3a:'Attorneys, compliance teams, legal researchers, and students working on trade and transactional risk. The language and output are designed for legal analysis, not general business summaries.',
+          faq3a:'Legal researchers, students, and anyone studying trade and transactional risk. The output is structured the way an attorney would organize an analysis, though it hasn\'t yet been tested by practicing attorneys — treat it as a research and learning aid, not a substitute for legal review.',
           faq4q:'What does the Deal Risk Screener do?',
           faq4a:'It takes a deal description and returns a structured memo covering CFIUS exposure, sanctions concerns, tariff risk, government contract flags, and due diligence priorities.',
           faq5q:'What is the Live Federal Search for?',
@@ -3600,11 +3601,11 @@
           ciceroConnectionError:'Tengo problemas para conectarme en este momento. Por favor, inténtelo de nuevo en un momento.',
           ciceroNoteTitle:'Nota de Cicero',
           faq1q:'¿Qué es Vislex?',
-          faq1a:'Un asistente de riesgo legal transfronterizo. Ayuda a examinar transacciones, buscar fuentes de riesgo comercial y revisar contratos.',
+          faq1a:'Un asistente de riesgo legal transfronterizo. Ayuda a examinar transacciones, buscar fuentes de riesgo comercial y revisar contratos. En términos sencillos: antes de cerrar un acuerdo transfronterizo, Vislex lo revisa frente a las sanciones de EE. UU., la revisión de seguridad nacional y las normas arancelarias — y señala lo que un abogado querría revisar primero.',
           faq2q:'¿En qué se diferencia de un chatbot normal?',
           faq2a:'Vislex está organizado en torno a flujos de trabajo legales estructurados, no preguntas abiertas. El resultado está formateado como un memorando legal.',
           faq3q:'¿Para quién está diseñado?',
-          faq3a:'Abogados, equipos de cumplimiento, investigadores legales y estudiantes que trabajan en riesgo comercial y transaccional.',
+          faq3a:'Investigadores legales, estudiantes y cualquier persona que estudie el riesgo comercial y transaccional. El resultado está estructurado como lo organizaría un abogado, aunque aún no ha sido probado por abogados en ejercicio — considérelo una herramienta de investigación y aprendizaje, no un sustituto de la revisión legal.',
           faq4q:'¿Qué hace el Detector de Riesgo?',
           faq4a:'Toma una descripción del acuerdo y devuelve un memorando estructurado que cubre exposición CFIUS, sanciones, aranceles y prioridades de diligencia.',
           faq5q:'¿Para qué sirve la Búsqueda Federal?',
@@ -3777,11 +3778,11 @@
           ciceroConnectionError:"J'ai des difficultés à me connecter pour le moment. Veuillez réessayer dans un instant.",
           ciceroNoteTitle:'Note de Cicero',
           faq1q:'Qu\'est-ce que Vislex?',
-          faq1a:'Un assistant de risque juridique transfrontalier. Il aide à examiner les transactions, rechercher des sources de risque commercial et examiner les contrats.',
+          faq1a:'Un assistant de risque juridique transfrontalier. Il aide à examiner les transactions, rechercher des sources de risque commercial et examiner les contrats. En termes simples : avant la conclusion d\'un accord transfrontalier, Vislex le vérifie par rapport aux sanctions américaines, à l\'examen de sécurité nationale et aux règles tarifaires — et signale ce qu\'un avocat voudrait examiner en premier.',
           faq2q:'En quoi est-il différent d\'un chatbot normal?',
           faq2a:'Vislex est organisé autour de flux de travail juridiques structurés, pas de questions ouvertes. Le résultat est formaté comme un mémo juridique.',
           faq3q:'Pour qui est-il conçu?',
-          faq3a:'Avocats, équipes de conformité, chercheurs juridiques et étudiants travaillant sur le risque commercial et transactionnel.',
+          faq3a:'Chercheurs juridiques, étudiants et toute personne étudiant le risque commercial et transactionnel. Le résultat est structuré comme le ferait un avocat, bien qu\'il n\'ait pas encore été testé par des avocats en exercice — à considérer comme un outil de recherche et d\'apprentissage, non comme un substitut à une révision juridique.',
           faq4q:'Que fait l\'Analyseur de Risques?',
           faq4a:'Il prend une description d\'accord et renvoie un mémo structuré couvrant l\'exposition CFIUS, les sanctions, les tarifs et les priorités de diligence.',
           faq5q:'À quoi sert la Recherche Fédérale?',
@@ -3948,11 +3949,11 @@
           ciceroConnectionError:'Ich habe derzeit Verbindungsprobleme. Bitte versuchen Sie es gleich noch einmal.',
           ciceroNoteTitle:'Cicero-Notiz',
           faq1q:'Was ist Vislex?',
-          faq1a:'Ein grenzüberschreitender Rechtsrisiko-Assistent. Er hilft beim Prüfen von Transaktionen, Suchen in Handelsrisikobanken und Überprüfen von Verträgen.',
+          faq1a:'Ein grenzüberschreitender Rechtsrisiko-Assistent. Er hilft beim Prüfen von Transaktionen, Suchen in Handelsrisikobanken und Überprüfen von Verträgen. Einfach gesagt: Bevor ein grenzüberschreitendes Geschäft abgeschlossen wird, prüft Vislex es anhand von US-Sanktionen, nationaler Sicherheitsprüfung und Zollregeln — und markiert, was ein Anwalt zuerst prüfen würde.',
           faq2q:'Wie unterscheidet es sich von einem normalen Chatbot?',
           faq2a:'Vislex ist um strukturierte Rechtsarbeitsabläufe organisiert, nicht offene Fragen. Das Ergebnis ist als Rechtsgutachten formatiert.',
           faq3q:'Für wen ist es gebaut?',
-          faq3a:'Anwälte, Compliance-Teams, Rechtsforscher und Studenten, die an Handels- und Transaktionsrisiken arbeiten.',
+          faq3a:'Rechtsforscher, Studierende und alle, die sich mit Handels- und Transaktionsrisiken beschäftigen. Die Ausgabe ist so strukturiert, wie es ein Anwalt tun würde, wurde jedoch noch nicht von praktizierenden Anwälten getestet — als Recherche- und Lernhilfe zu verstehen, nicht als Ersatz für eine juristische Prüfung.',
           faq4q:'Was macht der Deal-Risikoprüfer?',
           faq4a:'Er nimmt eine Deal-Beschreibung und gibt ein strukturiertes Gutachten zurück, das CFIUS-Exposition, Sanktionen, Zölle und Due-Diligence-Prioritäten abdeckt.',
           faq5q:'Wofür ist die Bundessuche?',
@@ -4118,11 +4119,11 @@
           ciceroConnectionError:'目前连接出现问题，请稍后再试。',
           ciceroNoteTitle:'Cicero备注',
           faq1q:'Vislex是什么？',
-          faq1a:'一个跨境法律风险助手。它帮助筛查交易、搜索联邦贸易风险来源，并审查合同以进行尽职调查。',
+          faq1a:'一个跨境法律风险助手。它帮助筛查交易、搜索联邦贸易风险来源，并审查合同以进行尽职调查。简单来说：在跨境交易完成之前，Vislex 会对照美国制裁、国家安全审查和关税规则进行核查——并标记出律师会最先关注的问题。',
           faq2q:'它与普通人工智能聊天机器人有何不同？',
           faq2a:'Vislex围绕结构化法律工作流程组织，而非开放式问答。输出格式为法律备忘录。',
           faq3q:'它为谁而建？',
-          faq3a:'律师、合规团队、法律研究人员以及研究贸易和交易风险的学生。',
+          faq3a:'法律研究人员、学生以及任何研究贸易和交易风险的人。输出内容按照律师组织分析的方式构建，但尚未经过执业律师的测试——请将其视为研究和学习工具，而非法律审查的替代品。',
           faq4q:'交易风险筛查器有什么功能？',
           faq4a:'它接受交易描述并返回涵盖CFIUS风险、制裁、关税、政府合同标志和尽职调查优先事项的结构化备忘录。',
           faq5q:'联邦数据库搜索有什么用？',
@@ -4288,11 +4289,11 @@
           ciceroConnectionError:'أواجه مشكلة في الاتصال حالياً. يرجى المحاولة مرة أخرى بعد قليل.',
           ciceroNoteTitle:'ملاحظة سيسيرو',
           faq1q:'ما هو Vislex؟',
-          faq1a:'مساعد مخاطر قانونية عابر للحدود. يساعد في فحص المعاملات والبحث في مصادر مخاطر التجارة ومراجعة العقود.',
+          faq1a:'مساعد مخاطر قانونية عابر للحدود. يساعد في فحص المعاملات والبحث في مصادر مخاطر التجارة ومراجعة العقود. بعبارة بسيطة: قبل إتمام صفقة عابرة للحدود، يتحقق Vislex منها في ضوء العقوبات الأمريكية ومراجعة الأمن القومي وقواعد التعريفات الجمركية — ويشير إلى ما قد يرغب المحامي في مراجعته أولاً.',
           faq2q:'كيف يختلف عن روبوت الدردشة العادي؟',
           faq2a:'Vislex منظم حول سير عمل قانوني منظم، وليس أسئلة مفتوحة. المخرجات بتنسيق مذكرة قانونية.',
           faq3q:'لمن بُني؟',
-          faq3a:'المحامون وفرق الامتثال والباحثون القانونيون والطلاب الذين يعملون في مجال مخاطر التجارة والمعاملات.',
+          faq3a:'الباحثون القانونيون والطلاب وأي شخص يدرس مخاطر التجارة والمعاملات. يتم تنظيم المخرجات بالطريقة التي ينظم بها المحامي التحليل، رغم أنها لم تُختبر بعد من قبل محامين ممارسين — يجب اعتبارها أداة بحث وتعلم، وليست بديلاً عن المراجعة القانونية.',
           faq4q:'ماذا يفعل فاحص مخاطر الصفقة؟',
           faq4a:'يأخذ وصف الصفقة ويُعيد مذكرة منظمة تغطي تعرض CFIUS والعقوبات والتعريفات الجمركية وأولويات العناية الواجبة.',
           faq5q:'ما فائدة البحث الفيدرالي؟',
