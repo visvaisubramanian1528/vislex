@@ -26,7 +26,7 @@ function isRateLimited(ip) {
   return timestamps.length > MAX_PER_WINDOW;
 }
 
-const MAX_BODY_BYTES = 60 * 1024; // ~60KB cap on request size, to bound cost per call
+const MAX_BODY_BYTES = 500 * 1024; // ~500KB cap — comfortably fits full-length contracts while still bounding cost per call
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
