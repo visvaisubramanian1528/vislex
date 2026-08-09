@@ -1961,8 +1961,7 @@
         const tagClass = entry.type === 'deal' ? 'history-tag-deal' : entry.type === 'federal' ? 'history-tag-federal' : 'history-tag-doc';
         const tagLabel = entry.type === 'deal' ? 'Deal' : entry.type === 'federal' ? 'Federal' : 'Doc';
         const item = document.createElement('button'); item.className = 'history-item';
-        item.innerHTML = '<div class="history-item-top"><span class="history-tag ' + tagClass + '">' + tagLabel + '</span><span class="history-item-title">' + (entry.input||'Analysis') + '</span><span class="history-item-time">' + entry.time + '</span></div><div class="history-item-preview">' + entry.date + '</div>';
-        item.onclick = () => restoreHistory(entry); list.appendChild(item);
+        item.innerHTML = '<div class="history-item-top"><span class="history-tag ' + tagClass + '">' + tagLabel + '</span><span class="history-item-title">' + escapeHtml(entry.input||'Analysis') + '</span><span class="history-item-time">' + escapeHtml(entry.time||'') + '</span></div><div class="history-item-preview">' + escapeHtml(entry.date||'') + '</div>';        item.onclick = () => restoreHistory(entry); list.appendChild(item);
       });
     }
     function restoreHistory(entry) {
@@ -2653,9 +2652,7 @@
       }catch(err){fileInfo.innerText="Error reading file: "+err.message;}
       zone.classList.remove('loading');
     }
-    function setUploadSuccess(filename,detail){document.getElementById("uploadZone").classList.add('has-file');document.getElementById("fileInfo").innerHTML="<strong>"+filename+"</strong> — "+detail;}
-    function removeUploadedFile(event) {
-      if (event) { event.preventDefault(); event.stopPropagation(); }
+      function setUploadSuccess(filename,detail){document.getElementById("uploadZone").classList.add('has-file');document.getElementById("fileInfo").innerHTML="<strong>"+escapeHtml(filename)+"</strong> — "+escapeHtml(detail);}      if (event) { event.preventDefault(); event.stopPropagation(); }
       uploadedFileText = ""; uploadedImageData = null; uploadedImageType = null;
       const zone = document.getElementById("uploadZone"), fileInput = document.getElementById("docFile"), fileInfo = document.getElementById("fileInfo");
       zone.classList.remove('has-file', 'loading', 'dragover');
