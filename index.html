@@ -2643,8 +2643,10 @@
       uploadedFileText="";uploadedImageData=null;uploadedImageType=null;
       fileInfo.innerText="Reading "+file.name+"...";zone.classList.add('loading');
       try{
-        if(ext==='txt'){uploadedFileText=await readAsText(file);setUploadSuccess(file.name,uploadedFileText.length+" characters");}
-        else if(ext==='docx'||ext==='doc'){fileInfo.innerText="Extracting text...";uploadedFileText=await extractDOCX(file);const sizeNote=uploadedFileText.length>500000?" — large document, analysis may take longer":"";setUploadSuccess(file.name,uploadedFileText.length+" characters extracted"+sizeNote);}        else if(['jpg','jpeg','png'].includes(ext)){const result=await readAsBase64(file);uploadedImageData=result.data;uploadedImageType=result.type;setUploadSuccess(file.name,"Image ready for analysis");}
+       if(ext==='txt'){uploadedFileText=await readAsText(file);setUploadSuccess(file.name,uploadedFileText.length+" characters");}
+        else if(ext==='pdf'){fileInfo.innerText="Extracting text from PDF...";uploadedFileText=await extractPDF(file);const sizeNote=uploadedFileText.length>500000?" — large document, analysis may take longer":"";setUploadSuccess(file.name,uploadedFileText.length+" characters extracted"+sizeNote);}
+        else if(ext==='docx'||ext==='doc'){fileInfo.innerText="Extracting text...";uploadedFileText=await extractDOCX(file);const sizeNote=uploadedFileText.length>500000?" — large document, analysis may take longer":"";setUploadSuccess(file.name,uploadedFileText.length+" characters extracted"+sizeNote);}
+        else if(['jpg','jpeg','png'].includes(ext)){const result=await readAsBase64(file);uploadedImageData=result.data;uploadedImageType=result.type;setUploadSuccess(file.name,"Image ready for analysis");}
         else{fileInfo.innerText="Unsupported file type.";}
       }catch(err){fileInfo.innerText="Error reading file: "+err.message;}
       zone.classList.remove('loading');
