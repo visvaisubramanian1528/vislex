@@ -4719,8 +4719,7 @@
           ? " Be warm and approachable. Explain concepts clearly with real-world analogies. Use 3-5 sentences."
           : " Use the Socratic method. Respond with a clarifying question that guides the user toward the answer, then briefly explain the key principle.";
         const analysisPart = lastAnalysisContext ? '\n\nRecent analysis output:\n' + lastAnalysisContext.substring(0, 3000) : '';
-        const docPart = lastSourceDocumentText ? '\n\nFull original source document (use this, not memory, to answer any question about a specific section, clause, or exact wording):\n' + lastSourceDocumentText.substring(0, 6000) : '';
-        const context = analysisPart + docPart;        // Unlike the three main tools, Cicero's replies aren't regex-parsed into sections,
+        const docPart = lastSourceDocumentText ? '\n\nFull original source document (use this, not memory, to answer any question about a specific section, clause, or exact wording — if the relevant section isn\'t contained in this text, say so explicitly rather than guessing):\n' + lastSourceDocumentText.substring(0, 100000) : '';        const context = analysisPart + docPart;        // Unlike the three main tools, Cicero's replies aren't regex-parsed into sections,
         // so there's no need to keep any part of the response in English — just answer
         // fully in the selected UI language.
         const lang = (currentSettings && currentSettings.lang) || 'en';
