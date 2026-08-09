@@ -1772,7 +1772,7 @@
     const API_ENDPOINT = "/api/claude";
 
     let uploadedFileText = "", uploadedImageData = null, uploadedImageType = null;
-    let ciceroHistory = [], lastAnalysisContext = "";
+    let ciceroHistory = [], lastAnalysisContext = "", lastSourceDocumentText = "";
     let ciceroAttachedText = "", ciceroAttachedFileName = "", ciceroAttachedImageData = null, ciceroAttachedImageType = null;
     const CICERO_STORAGE_KEY = 'vislex_cicero_chat';
     let historyPanelOpen = false, sidebarVisible = true, questionsTyped = false;
@@ -1875,7 +1875,7 @@
         document.getElementById('federalDb').selectedIndex = 0;
       }
       if (tab === 'docs') {
-        uploadedFileText = ''; uploadedImageData = null; uploadedImageType = null;
+          uploadedFileText = ''; uploadedImageData = null; uploadedImageType = null; lastSourceDocumentText = '';
         document.getElementById('docContext').value = '';
         document.getElementById('docResult').style.display = 'none'; document.getElementById('docResult').innerHTML = '';
         document.getElementById('docError').style.display = 'none'; document.getElementById('docLoader').classList.remove('active');
@@ -2671,8 +2671,7 @@
       resultBox.style.display="none";errorBox.style.display="none";btn.disabled=true;btn.innerText="Analyzing...";
       showLoader(loader,['dcs1','dcs2','dcs3']);
       const sp="You are a trade law associate reviewing a contract for trade risk issues. Write your response in plain prose with NO markdown symbols whatsoever. Use these exact section headings on their own lines followed by a colon: SUMMARY, TRADE RISK FLAGS, SUPPLY CHAIN EXPOSURE, MISSING PROVISIONS, RECOMMENDED NEXT STEPS. Under SUMMARY write 2 to 3 specific sentences about what this document is and its overall risk level. Under TRADE RISK FLAGS and SUPPLY CHAIN EXPOSURE, for each item write it as: the concern in one sentence, then on the next line write Quote: followed by the exact verbatim text from the document that supports it in quotation marks. Under MISSING PROVISIONS list each missing item as a plain sentence. Under RECOMMENDED NEXT STEPS list 3 to 5 action items. No markdown. No asterisks. No pound signs. End with: This is a research prototype, not legal advice."+getOutputLanguageInstruction();
-      try{let text;if(uploadedImageData){text=await callClaudeWithImage(sp,uploadedImageData,uploadedImageType,context);}else{text=await callClaude(sp,context?"Additional context: "+context+"\n\nDocument text:\n"+uploadedFileText:"Document text:\n"+uploadedFileText,null);}renderGenericResult(resultBox,text);saveToHistory('doc',context||'Document analysis',resultBox.innerHTML);}
-      catch(err){errorBox.style.display="block";errorBox.innerText="Something went wrong: "+err.message;}
+      try{let text;if(uploadedImageData){text=await callClaudeWithImage(sp,uploadedImageData,uploadedImageType,context);}else{text=await callClaude(sp,context?"Additional context: "+context+"\n\nDocument text:\n"+uploadedFileText:"Document text:\n"+uploadedFileText,null);}renderGenericResult(resultBox,text);lastSourceDocumentText=uploadedFileText||(uploadedImageData?'[Image-based document — original text not available to Cicero]':'');saveToHistory('doc',context||'Document analysis',resultBox.innerHTML);}      catch(err){errorBox.style.display="block";errorBox.innerText="Something went wrong: "+err.message;}
       finally{hideLoader(loader);btn.disabled=false;btn.innerText="Analyze Document";}
     }
 
@@ -2970,7 +2969,7 @@
       rebuildCiceroHistoryFromLog();
     }
     function clearCiceroChat() {
-      ciceroHistory = []; ciceroLog = []; lastAnalysisContext = '';
+        ciceroHistory = []; ciceroLog = []; lastAnalysisContext = ''; lastSourceDocumentText = '';
       localStorage.removeItem(CICERO_STORAGE_KEY);
       removeCiceroAttachment();
       const msgs = document.getElementById('ciceroMessages');
@@ -4719,8 +4718,9 @@
           : style === 'conversational'
           ? " Be warm and approachable. Explain concepts clearly with real-world analogies. Use 3-5 sentences."
           : " Use the Socratic method. Respond with a clarifying question that guides the user toward the answer, then briefly explain the key principle.";
-        const context = lastAnalysisContext ? '\n\nRecent analysis context:\n' + lastAnalysisContext.substring(0, 800) : '';
-        // Unlike the three main tools, Cicero's replies aren't regex-parsed into sections,
+        const analysisPart = lastAnalysisContext ? '\n\nRecent analysis output:\n' + lastAnalysisContext.substring(0, 3000) : '';
+        const docPart = lastSourceDocumentText ? '\n\nFull original source document (use this, not memory, to answer any question about a specific section, clause, or exact wording):\n' + lastSourceDocumentText.substring(0, 6000) : '';
+        const context = analysisPart + docPart;        // Unlike the three main tools, Cicero's replies aren't regex-parsed into sections,
         // so there's no need to keep any part of the response in English — just answer
         // fully in the selected UI language.
         const lang = (currentSettings && currentSettings.lang) || 'en';
