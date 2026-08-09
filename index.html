@@ -1485,8 +1485,7 @@
         <div class="panel-header">
           <h2>Document Analyzer</h2>
           <p>Upload a contract or deal document and Vislex will scan it for trade risk clauses, supply chain exposure, missing provisions, and attorney recommendations.</p>
-          <p style="font-size:13px;color:#7d8bab;margin-top:6px">Uploaded documents are sent to the AI model for this analysis only and are not stored by Vislex afterward. Avoid uploading documents containing information you aren't authorized to share.</p>
-        </div>
+          <p style="font-size:13px;color:#7d8bab;margin-top:6px">Very long documents (roughly 150+ pages) may take longer to analyze, and if you ask Cicero about a specific section afterward, extremely long documents may exceed what it can review — Cicero will say so rather than guess.</p>        </div>
         <label>Upload Document</label>
         <div class="upload-zone" id="uploadZone" onclick="document.getElementById(&#39;docFile&#39;).click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
           <button type="button" class="upload-remove-btn" id="uploadRemoveBtn" title="Remove uploaded file" onclick="removeUploadedFile(event)">✕</button>
@@ -2645,9 +2644,7 @@
       fileInfo.innerText="Reading "+file.name+"...";zone.classList.add('loading');
       try{
         if(ext==='txt'){uploadedFileText=await readAsText(file);setUploadSuccess(file.name,uploadedFileText.length+" characters");}
-        else if(ext==='pdf'){fileInfo.innerText="Extracting text from PDF...";uploadedFileText=await extractPDF(file);setUploadSuccess(file.name,uploadedFileText.length+" characters extracted");}
-        else if(ext==='docx'||ext==='doc'){fileInfo.innerText="Extracting text...";uploadedFileText=await extractDOCX(file);setUploadSuccess(file.name,uploadedFileText.length+" characters extracted");}
-        else if(['jpg','jpeg','png'].includes(ext)){const result=await readAsBase64(file);uploadedImageData=result.data;uploadedImageType=result.type;setUploadSuccess(file.name,"Image ready for analysis");}
+        else if(ext==='docx'||ext==='doc'){fileInfo.innerText="Extracting text...";uploadedFileText=await extractDOCX(file);const sizeNote=uploadedFileText.length>500000?" — large document, analysis may take longer":"";setUploadSuccess(file.name,uploadedFileText.length+" characters extracted"+sizeNote);}        else if(['jpg','jpeg','png'].includes(ext)){const result=await readAsBase64(file);uploadedImageData=result.data;uploadedImageType=result.type;setUploadSuccess(file.name,"Image ready for analysis");}
         else{fileInfo.innerText="Unsupported file type.";}
       }catch(err){fileInfo.innerText="Error reading file: "+err.message;}
       zone.classList.remove('loading');
@@ -4719,8 +4716,7 @@
           ? " Be warm and approachable. Explain concepts clearly with real-world analogies. Use 3-5 sentences."
           : " Use the Socratic method. Respond with a clarifying question that guides the user toward the answer, then briefly explain the key principle.";
         const analysisPart = lastAnalysisContext ? '\n\nRecent analysis output:\n' + lastAnalysisContext.substring(0, 3000) : '';
-        const docPart = lastSourceDocumentText ? '\n\nFull original source document (use this, not memory, to answer any question about a specific section, clause, or exact wording — if the relevant section isn\'t contained in this text, say so explicitly rather than guessing):\n' + lastSourceDocumentText.substring(0, 100000) : '';        const context = analysisPart + docPart;        // Unlike the three main tools, Cicero's replies aren't regex-parsed into sections,
-        // so there's no need to keep any part of the response in English — just answer
+        const docPart = lastSourceDocumentText ? '\n\nFull original source document (use this, not memory, to answer any question about a specific section, clause, or exact wording — if the relevant section isn\'t contained in this text, say so explicitly rather than guessing):\n' + lastSourceDocumentText.substring(0, 700000) : '';        // so there's no need to keep any part of the response in English — just answer
         // fully in the selected UI language.
         const lang = (currentSettings && currentSettings.lang) || 'en';
         const langInstruction = lang !== 'en' ? (" Respond entirely in " + (OUTPUT_LANGUAGE_NAMES[lang] || 'English') + ".") : '';
