@@ -2652,8 +2652,9 @@
       }catch(err){fileInfo.innerText="Error reading file: "+err.message;}
       zone.classList.remove('loading');
     }
-      function setUploadSuccess(filename,detail){document.getElementById("uploadZone").classList.add('has-file');document.getElementById("fileInfo").innerHTML="<strong>"+escapeHtml(filename)+"</strong> — "+escapeHtml(detail);}      if (event) { event.preventDefault(); event.stopPropagation(); }
-      uploadedFileText = ""; uploadedImageData = null; uploadedImageType = null;
+      function setUploadSuccess(filename,detail){document.getElementById("uploadZone").classList.add('has-file');document.getElementById("fileInfo").innerHTML="<strong>"+escapeHtml(filename)+"</strong> — "+escapeHtml(detail);}
+      function removeUploadedFile(event) {
+        if (event) { event.preventDefault(); event.stopPropagation(); }      uploadedFileText = ""; uploadedImageData = null; uploadedImageType = null;
       const zone = document.getElementById("uploadZone"), fileInput = document.getElementById("docFile"), fileInfo = document.getElementById("fileInfo");
       zone.classList.remove('has-file', 'loading', 'dragover');
       fileInput.value = "";
