@@ -2020,10 +2020,10 @@
       if(t.includes('CFIUS')){keys.push('CFIUS');keys.push('ECFR_CFIUS');}
       if(t.includes('301')||t.includes('USTR'))keys.push('USTR301');
       if(t.includes('AD/CVD')||t.includes('ANTIDUMPING')||t.includes('COUNTERVAILING'))keys.push('ADCVD');
-      if(t.includes('BIS')||t.includes('EXPORT CONTROL')||t.includes('EAR')){keys.push('BIS');keys.push('ENTITY');keys.push('EAR');}
+      if(/\bBIS\b/.test(t)||t.includes('EXPORT CONTROL')||/\bEAR\b/.test(t)||t.includes('EAR99')){keys.push('BIS');keys.push('ENTITY');keys.push('EAR');}
       if(t.includes('CBP')||t.includes('CUSTOMS')||t.includes('HTS'))keys.push('CBP');
       if(t.includes('UFLPA')||t.includes('FORCED LABOR')||t.includes('XINJIANG'))keys.push('UFLPA');
-      if(t.includes('FAR')||t.includes('GOVERNMENT CONTRACT'))keys.push('FAR');
+      if(/\bFAR\b/.test(t)||t.includes('GOVERNMENT CONTRACT'))keys.push('FAR');
       return [...new Set(keys)];
     }
     function buildCitationsHTML(keys) {

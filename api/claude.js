@@ -26,7 +26,7 @@ function isRateLimited(ip) {
   return timestamps.length > MAX_PER_WINDOW;
 }
 
-const MAX_BODY_BYTES = 500 * 1024; // ~500KB cap — comfortably fits full-length contracts while still bounding cost per call
+const MAX_BODY_BYTES = 2 * 1024 * 1024; // ~2MB — comfortably covers full long-form contracts (Cicero re-sends the whole doc each turn) while still well under Claude's actual context window
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
