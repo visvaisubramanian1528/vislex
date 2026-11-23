@@ -1317,6 +1317,30 @@
         color: #7aaae0;
         line-height: 1.6;
       }
+  
+    /* ── PRIVACY & SECURITY PAGES ── */
+    .policy-page{max-width:760px;margin:0 auto}
+    .policy-updated{font-size:12px;color:#5a7a9a;margin-top:8px}
+    .policy-callout{background:#0d1929;border:1px solid #1e3a5a;border-left:3px solid #4a6dbf;border-radius:8px;padding:18px 22px;margin:0 0 20px;font-size:14px;color:#b0c0d8;line-height:1.75}
+    .policy-callout strong{color:#fff}
+    .policy-callout.warn{border-left-color:#d0c040;background:#14160d}
+    .policy-section{padding:22px 0;border-bottom:1px solid #1a2d45}
+    .policy-section:last-of-type{border-bottom:none}
+    .policy-section h3{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4a6dbf;margin-bottom:14px}
+    .policy-section p,.policy-section li{font-size:14px;color:#b0c0d8;line-height:1.75}
+    .policy-section p+p{margin-top:10px}
+    .policy-section ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+    .policy-section li{position:relative;padding-left:20px}
+    .policy-section li::before{content:'›';position:absolute;left:0;color:#4a6dbf;font-weight:700}
+    .policy-section li strong{color:#e6e6e6}
+    .policy-section a{color:#7aaae0;text-decoration:underline}
+    .policy-check li::before{content:'✓';color:#50d080}
+    .policy-limits li::before{content:'!';color:#d0c040}
+    .policy-flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 14px}
+    .policy-flow .node{background:#111827;border:1px solid #1e3a5a;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;color:#c8d4e8}
+    .policy-flow .arrow{color:#4a6dbf;font-weight:700}
+    .policy-actions{margin-top:14px}
+    .policy-actions .btn{margin-top:0}
   </style>
 </head>
 <body>
@@ -1343,6 +1367,13 @@
     </button>
     <button class="sidebar-btn" data-tip="Questions" onclick="switchTab(&#39;questions&#39;,null);this.blur()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </button>
+        <div class="sidebar-divider"></div>
+    <button class="sidebar-btn" data-tip="Privacy Policy" onclick="switchTab('privacy',null);this.blur()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    </button>
+    <button class="sidebar-btn" data-tip="Data Security" onclick="switchTab('security',null);this.blur()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
     </button>
     <div class="sidebar-spacer"></div>
     <button class="sidebar-btn" data-tip="Home" onclick="goToHero();this.blur()">
@@ -1381,6 +1412,8 @@
       <button class="nav-tab nav-tab-about" data-tab="about" onclick="switchTab(&#39;about&#39;,this)">About</button>
       <button class="nav-tab nav-tab-how" data-tab="how" onclick="switchTab(&#39;how&#39;,this)">How It Works</button>
       <button class="nav-tab" data-tab="questions" onclick="switchTab(&#39;questions&#39;,this)">Questions</button>
+      <button class="nav-tab" data-tab="privacy" onclick="switchTab('privacy',this)">Privacy</button>
+      <button class="nav-tab" data-tab="security" onclick="switchTab('security',this)">Security</button>
       <button class="settings-cog-btn" onclick="toggleSettings();this.blur()" data-tip="Settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="3"></circle>
@@ -1630,6 +1663,170 @@
       </div>
 
       <!-- ABOUT -->
+      <!-- PRIVACY POLICY -->
+      <div class="tab-panel" id="panel-privacy">
+        <div class="panel-header">
+          <h2>Privacy Policy</h2>
+          <p>What Vislex collects, why, who else handles it, and the controls you have. Written to match how the site actually works.</p>
+          <div class="policy-updated">Last updated: November 23, 2026</div>
+        </div>
+        <div class="policy-page">
+          <div class="policy-callout"><strong>The short version.</strong> Vislex has no accounts, no ads, and no analytics scripts, and it does not sell data. Whatever you type or upload is sent to an AI service to produce your result. A copy of your recent results and Cicero chat is kept in <em>your own browser</em> until you clear it.</div>
+
+          <div class="policy-section">
+            <h3>1. Who we are</h3>
+            <p>Vislex is a research prototype built by Visvai Subramanian, a university student. It is not a law firm, it does not give legal advice, and it is not affiliated with any government agency or commercial legal-tech provider. In this policy, &ldquo;we&rdquo; means that project.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>2. What we handle</h3>
+            <ul>
+              <li><strong>Text you enter:</strong> deal descriptions, search terms, extra context for a document, and messages to Cicero.</li>
+              <li><strong>Files you attach:</strong> TXT, PDF, DOCX, JPG and PNG files are read inside your browser. Their extracted text (or, for images, the image itself) is included in the request that is sent for analysis.</li>
+              <li><strong>Technical data:</strong> when you load the site or run a tool, the hosting provider can see your IP address, browser type and the time of the request.</li>
+              <li><strong>Saved items in your browser:</strong> your language, Cicero style and depth settings; up to your last 30 analyses; and up to your last 40 Cicero messages. These stay on your device.</li>
+            </ul>
+            <p>We do not ask for your name, email address, password or payment details, and Vislex has no user accounts. If you email us, we receive what you send.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>3. How we use it</h3>
+            <ul>
+              <li>To generate the analysis, search result or Cicero answer you asked for.</li>
+              <li>To keep the site running and protected from abuse.</li>
+              <li>To show you your own history on your own device.</li>
+            </ul>
+            <p>We do not use what you submit for advertising or profiling, and Vislex does not train its own models.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>4. Who else handles your data</h3>
+            <ul>
+              <li><strong>Anthropic</strong> provides the AI model that analyzes your input. When a request needs current information (Live Federal Search and sometimes Cicero), the AI may run web searches, and the search terms it writes are processed by a third-party search provider working with Anthropic. <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">Anthropic privacy policy</a></li>
+              <li><strong>Vercel</strong> hosts the site and the server function that relays your requests, and may keep standard request logs. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel privacy policy</a></li>
+              <li><strong>Cloudflare (cdnjs)</strong> delivers the open-source libraries used to read PDF and Word files, and can see your IP address when your browser fetches them. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare privacy policy</a></li>
+              <li><strong>Google Fonts</strong> delivers the site&rsquo;s typefaces, and can see your IP address when your browser fetches them. <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener noreferrer">Google Fonts privacy FAQ</a></li>
+            </ul>
+            <p>These providers handle data under their own terms. We do not sell your data to anyone.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>5. How long it is kept</h3>
+            <ul>
+              <li><strong>Anthropic:</strong> its published policy says that prompts and outputs sent through its commercial API are automatically deleted within 30 days by default and are not used to train its models by default. Content flagged for policy violations, or that must be kept for legal reasons, may be retained longer. Anthropic&rsquo;s own pages control; see <a href="https://platform.claude.com/docs/en/manage-claude/api-and-data-retention" target="_blank" rel="noopener noreferrer">Anthropic&rsquo;s API data retention page</a>.</li>
+              <li><strong>Hosting logs:</strong> kept according to Vercel&rsquo;s own retention settings.</li>
+              <li><strong>Your browser:</strong> history, chat and settings stay until you clear them (button below) or clear your browser data.</li>
+            </ul>
+            <p>Vislex itself runs no database and no user accounts, so there is typically no stored profile or submission archive on our side to retrieve or delete.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>6. Your choices</h3>
+            <ul>
+              <li><strong>Erase what is stored on this device</strong> with the button below.</li>
+              <li><strong>Limit what you submit.</strong> Don&rsquo;t include confidential, privileged or personal information. Use sample or redacted documents.</li>
+              <li><strong>Use a private browsing window</strong> on shared computers.</li>
+              <li><strong>Ask us a question</strong> at <a href="mailto:visvaisubramanian1528@gmail.com">visvaisubramanian1528@gmail.com</a>. If you are in a place with privacy rights (for example the EU, UK or California) you can ask what we hold about you; because we keep no accounts, the answer is usually that we hold nothing beyond emails you sent us.</li>
+            </ul>
+            <div class="policy-actions"><button class="btn" type="button" onclick="clearSavedData()">Clear saved data on this device</button></div>
+          </div>
+
+          <div class="policy-section">
+            <h3>7. Cookies and local storage</h3>
+            <p>Vislex does not set cookies. It uses your browser&rsquo;s local storage for the saved items listed above. The third-party providers in section 4 may log requests or set their own technical cookies when they deliver their files.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>8. Children</h3>
+            <p>Vislex is a professional research tool and is not intended for anyone under 18.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>9. Security</h3>
+            <p>See the <a href="#security" onclick="switchTab('security',null);return false;">Data Security</a> page for how requests are protected and what that protection cannot cover.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>10. Changes and contact</h3>
+            <p>If this policy changes, the date at the top will change. Questions: <a href="mailto:visvaisubramanian1528@gmail.com">visvaisubramanian1528@gmail.com</a>.</p>
+            <p style="font-size:12px;color:#5a7a9a">This policy describes a student research project in good faith. It is not legal advice and has not been reviewed by a lawyer.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA SECURITY -->
+      <div class="tab-panel" id="panel-security">
+        <div class="panel-header">
+          <h2>Data Security</h2>
+          <p>How Vislex protects what you submit, what it cannot protect, and how to use it safely.</p>
+          <div class="policy-updated">Last updated: November 23, 2026</div>
+        </div>
+        <div class="policy-page">
+          <div class="policy-callout warn"><strong>Read this first.</strong> No online tool can promise that data will never be exposed. Vislex is an unaudited research prototype. Do not upload attorney-client privileged material, confidential deal documents, trade secrets, or personal information about real people. Use sample or redacted documents.</div>
+
+          <div class="policy-section">
+            <h3>Where your data travels</h3>
+            <div class="policy-flow">
+              <span class="node">Your browser</span><span class="arrow">&rarr;</span>
+              <span class="node">Vislex server function (Vercel)</span><span class="arrow">&rarr;</span>
+              <span class="node">Anthropic AI service</span><span class="arrow">&rarr;</span>
+              <span class="node">Result back to you</span>
+            </div>
+            <p>Files are read inside your browser first. Their text, or the image itself, is then sent along with your question. When current information is needed, the AI service may also run web searches through a third-party search provider.</p>
+          </div>
+
+          <div class="policy-section">
+            <h3>Protections in place</h3>
+            <ul class="policy-check">
+              <li><strong>Encrypted in transit.</strong> The site is served over HTTPS, and the server function talks to the AI service over HTTPS.</li>
+              <li><strong>The AI service key stays on the server.</strong> It is stored as an environment variable on the hosting platform, not in the page code your browser receives.</li>
+              <li><strong>No accounts and no database.</strong> Vislex has no passwords or user profiles to breach.</li>
+              <li><strong>Browser security rules.</strong> The site tells your browser to refuse to be embedded inside other sites, to load scripts only from approved sources, and to send data only back to Vislex&rsquo;s own server.</li>
+              <li><strong>Output is escaped.</strong> AI answers and your own text are escaped before they are displayed, so they are shown as text rather than run as code.</li>
+              <li><strong>You control local data.</strong> One button erases the history and chat stored in your browser.</li>
+            </ul>
+          </div>
+
+          <div class="policy-section">
+            <h3>What is stored on your device</h3>
+            <ul>
+              <li>Your settings (language, Cicero style, analysis depth).</li>
+              <li>Your last 30 analyses, including the text of each result. Document analyses can contain short quotes from the document you uploaded.</li>
+              <li>Your last 40 Cicero messages.</li>
+            </ul>
+            <p>The full text of an uploaded document is kept in memory only while the page is open and is not saved to local storage.</p>
+            <div class="policy-actions"><button class="btn" type="button" onclick="clearSavedData()">Clear saved data on this device</button></div>
+          </div>
+
+          <div class="policy-section">
+            <h3>What we cannot guarantee</h3>
+            <ul class="policy-limits">
+              <li><strong>Other providers.</strong> Anthropic, its search provider, Vercel, Cloudflare and Google handle data under their own policies and security. Their practices can change.</li>
+              <li><strong>Your device.</strong> Shared computers, browser extensions, screenshots and malware are outside our control.</li>
+              <li><strong>Hidden instructions in documents.</strong> A document can contain text meant to steer the AI. Treat results as drafts to verify, not as authoritative.</li>
+              <li><strong>AI errors.</strong> Outputs can be wrong or incomplete. This is research support, not legal advice.</li>
+              <li><strong>No formal audit.</strong> Vislex has no independent security audit or compliance certification (such as SOC 2, ISO 27001 or HIPAA).</li>
+            </ul>
+          </div>
+
+          <div class="policy-section">
+            <h3>Using Vislex safely</h3>
+            <ul>
+              <li>Redact names, account numbers and other identifiers before uploading.</li>
+              <li>Prefer sample documents or public filings for testing.</li>
+              <li>Use a private window on shared computers, then clear saved data.</li>
+              <li>Have a qualified attorney verify anything you plan to rely on.</li>
+            </ul>
+          </div>
+
+          <div class="policy-section">
+            <h3>Report a security issue</h3>
+            <p>If you find a vulnerability, please email <a href="mailto:visvaisubramanian1528@gmail.com?subject=Vislex%20security%20report">visvaisubramanian1528@gmail.com</a> with steps to reproduce it. Please do not access other people&rsquo;s data or disrupt the service. This is a student-run project, so we cannot promise response times, but reports are taken seriously.</p>
+            <p>See also the <a href="#privacy" onclick="switchTab('privacy',null);return false;">Privacy Policy</a>.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="tab-panel" id="panel-about">
         <div class="about-page">
           <div class="about-hero-card" id="aboutHeroCard">
@@ -1847,7 +2044,7 @@
 
     (function restoreTab() {
       const hash = window.location.hash.replace('#','');
-      const valid = ['home','screener','federal','docs','how','about','questions'];
+      const valid = ['home','screener','federal','docs','how','about','questions','privacy','security'];
       const tab = (hash && valid.includes(hash)) ? hash : 'home';
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
@@ -3041,6 +3238,22 @@
     function showSelectionToolbar(){const toolbar=document.getElementById('selectionToolbar'),w=290;let left=lastMouseX-(w/2);if(left<10)left=10;if(left+w>window.innerWidth-10)left=window.innerWidth-w-10;toolbar.style.cssText='position:fixed;left:'+left+'px;top:'+(lastMouseY-65)+'px;width:'+w+'px;z-index:9999;display:flex;flex-direction:column;align-items:center;';}
     function hideSelectionToolbar(){document.getElementById('selectionToolbar').style.display='none';}
     function handleSelection(action){if(!currentSelectedText)return;hideSelectionToolbar();window.getSelection().removeAllRanges();const panel=document.getElementById('ciceroPanel');if(!panel.classList.contains('open'))panel.classList.add('open');const prompts={explain:'Can you explain this in plain English: "'+currentSelectedText+'"',simplify:'Can you simplify this for me: "'+currentSelectedText+'"',define:'Can you define this legal or trade term: "'+currentSelectedText+'"'};document.getElementById('ciceroInput').value=prompts[action];setTimeout(()=>sendCicero(),100);}
+
+    /* PRIVACY: erase everything Vislex stores in this browser */
+    function clearSavedData() {
+      if (!confirm('Delete the saved analysis history and Cicero conversation stored in this browser? This cannot be undone.')) return;
+      try { clearHistory(); } catch (e) {}
+      try { clearCiceroChat(); } catch (e) {}
+      try { removeUploadedFile(null); } catch (e) {}
+      uploadedFileText = ''; uploadedImageData = null; uploadedImageType = null;
+      lastAnalysisContext = ''; lastSourceDocumentText = '';
+      ['dealResult', 'federalResult', 'docResult'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) { el.innerHTML = ''; el.style.display = 'none'; }
+      });
+      var cw = document.getElementById('cfiusSliderWrap'); if (cw) cw.style.display = 'none';
+      try { showSettingsToast('Saved data cleared from this browser.'); } catch (e) {}
+    }
 
     /* FAQ */
     function toggleFaq(btn){const answer=btn.nextElementSibling,isOpen=btn.classList.contains('open');document.querySelectorAll('.faq-q').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');answer.classList.add('open');}}
